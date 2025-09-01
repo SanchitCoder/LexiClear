@@ -1,5 +1,7 @@
 import React from 'react'
 import { FileText, Download } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 interface ResultsCardProps {
   results: string
@@ -58,10 +60,8 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({ results, fileName }) =
       {/* Body */}
       <div className="p-6">
         <div className="max-h-96 overflow-y-auto pr-2 custom-scrollbar">
-          <div className="prose prose-sm max-w-none">
-            <div className="whitespace-pre-wrap text-gray-800 leading-relaxed">
-              {plainText}
-            </div>
+          <div className="prose prose-sm max-w-none text-gray-800 leading-relaxed">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{plainText}</ReactMarkdown>
           </div>
         </div>
       </div>
